@@ -9,8 +9,8 @@
 
 # ask for dir to install to
 clear
-script_path="/shared/httpd/shell/skit/"
-script_path_files="/shared/httpd/shell/skit/files/"
+script_path="/shared/httpd/shell/skitup/"
+script_path_files="/shared/httpd/shell/skitup/files/"
 
 echo ""
 echo ""
@@ -46,7 +46,9 @@ if [[ "$option" == "y" ]]; then
     mkdir "$name" || exit 1
     cd "$name" || exit 1
 
-    npm init svelte@next .
+    # npm init svelte@next .
+
+    npm init svelte .
 
     cd "$www_path/$name"
 
