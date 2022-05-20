@@ -6,3 +6,4 @@
 + tailwind
 + postcss
 + autoprefixer
++ $root alias
