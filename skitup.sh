@@ -11,6 +11,9 @@
 clear
 script_path="/shared/httpd/shell/skitup/"
 script_path_files="/shared/httpd/shell/skitup/files/"
+tsconfig_path_file="/shared/httpd/shell/skitup/tsconfig/"
+jsconfig_path_file="/shared/httpd/shell/skitup/jsconfig/"
+purejsconfig_path_file="/shared/httpd/shell/skitup/purejs/"
 
 echo ""
 echo ""
@@ -87,7 +90,7 @@ if [[ "$option" == "y" ]]; then
     sed -i "s/\"svelte-kit build\"/$env_cmd_sveltekit_build/g" package.json
 
 
-    # app .vscode to .gitignore file
+    # add .vscode to .gitignore file
     # https://www.cyberciti.biz/faq/linux-append-text-to-end-of-file/
     echo ".vscode" >> .gitignore
 
@@ -101,9 +104,52 @@ if [[ "$option" == "y" ]]; then
 
     rm -rf .prettierrc
 
+    # https://linuxize.com/post/bash-check-if-file-exists/
 
+    # https://kit.svelte.dev/faq#aliases
 
+    TSCONFIG=tsconfig.json
 
+    JSCONFIG=jsconfig.json
+
+    # for a project with Typescript support
+    if test -f "$TSCONFIG"; then
+
+        echo "$TSCONFIG exists"
+
+        # copy /shared/httpd/SHELL/skit/tsconfig/ to project folder
+        rsync -a "$tsconfig_path_file" . || exit 1
+    fi
+
+    # for a project with Type-checked JavaScript
+    if test -f "$JSCONFIG"; then
+
+        echo "$JSCONFIG exists"
+
+        # copy /shared/httpd/SHELL/skit/jsconfig/ to project folder
+        rsync -a "$jsconfig_path_file" . || exit 1
+
+    fi
+
+    # for a pure JavaScript project we still make the compiler aware of the path alias
+    if [ ! -f "$TSCONFIG" ]; then
+
+        echo "$TSCONFIG does not exist"
+
+        if [ ! -f "$JSCONFIG" ]; then
+
+            echo "$JSCONFIG does not exist"
+
+            # copy /shared/httpd/SHELL/skit/purejs/ to project folder
+            rsync -a "$purejsconfig_path_file" . || exit 1
+
+        fi
+
+    fi
+
+    mkdir src/lib
+
+    mkdir src/components
 
     echo "**************************************************************"
     echo "**************************************************************"
