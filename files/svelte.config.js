@@ -4,6 +4,8 @@
 
 import adapter from '@sveltejs/adapter-static';
 
+import path from 'path'
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
@@ -42,6 +44,11 @@ const config = {
 			define: {
 				// env-cmd https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
 				'process.env': process.env
+			},
+			resolve: {
+				alias: {
+					$root: path.resolve('./src')
+				}
 			}
 		}
 	}
