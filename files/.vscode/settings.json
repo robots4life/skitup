@@ -1,6 +1,11 @@
 {
+// https://stackoverflow.com/questions/52102705/cant-get-correct-autoformat-on-save-in-visual-studio-code-with-eslint-and-prett#comment106193957_52259752
 "editor.defaultFormatter": "esbenp.prettier-vscode",
 "editor.formatOnSave": true,
+"eslint.alwaysShowStatus": true,
+"editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+},
 "editor.formatOnPaste": false,
 "prettier.requireConfig": true,
 // https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2
