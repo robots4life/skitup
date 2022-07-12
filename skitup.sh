@@ -61,7 +61,7 @@ if [[ "$option" == "y" ]]; then
 
     npx tailwindcss init tailwind.config.cjs -p
 
-    mv postcss.config.js postcss.config.cjs
+    # mv postcss.config.js postcss.config.cjs => mv: cannot stat 'postcss.config.js': No such file or directory
 
     # npm install --save-dev @sveltejs/adapter-node@next --verbose
 
@@ -79,15 +79,15 @@ if [[ "$option" == "y" ]]; then
     sed -i "s/SVELTE_KIT_PROJECT_PATH/$name/g" .vscode/settings.json
 
 
-    # replace exact \"svelte-kit dev\" string in file package.json with "env-cmd svelte-kit dev"
+    # replace exact \"vite dev\" string in file package.json with "env-cmd vite dev"
     # https://askubuntu.com/a/1007368
-    env_cmd_sveltekit_dev="\"env-cmd svelte-kit dev\""    
-    sed -i "s/\"svelte-kit dev\"/$env_cmd_sveltekit_dev/g" package.json
+    env_cmd_vite_dev="\"env-cmd vite dev\""    
+    sed -i "s/\"vite dev\"/$env_cmd_vite_dev/g" package.json
 
 
-    # replace exact \"svelte-kit build\" string in file package.json with "env-cmd svelte-kit build && ./copy.sh"
-    env_cmd_sveltekit_build="\"env-cmd svelte-kit build \&\& \.\/copy.sh\""    
-    sed -i "s/\"svelte-kit build\"/$env_cmd_sveltekit_build/g" package.json
+    # replace exact \"vite build\" string in file package.json with "env-cmd vite build && ./copy.sh"
+    env_cmd_vite_build="\"env-cmd vite build \&\& \.\/copy.sh\""    
+    sed -i "s/\"vite build\"/$env_cmd_vite_build/g" package.json
 
 
     # add .vscode to .gitignore file

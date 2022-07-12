@@ -4,7 +4,7 @@
 
 import adapter from '@sveltejs/adapter-static';
 
-import path from 'path'
+import path from 'path';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -30,27 +30,27 @@ const config = {
 		prerender: {
 			// This can be false if you're using a fallback (i.e. SPA mode)
 			default: true
-		},
-		// Adapter Static end
-		vite: {
-			server: {
-				host: '0.0.0.0',
-				port: 3000,
-				strictPort: true,
-				hmr: {
-					clientPort: 443
-				}
-			},
-			define: {
-				// env-cmd https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
-				'process.env': process.env
-			},
-			resolve: {
-				alias: {
-					$root: path.resolve('./src')
-				}
-			}
 		}
+		// Adapter Static end
+		// vite: {
+		// 	server: {
+		// 		host: '0.0.0.0',
+		// 		port: 3000,
+		// 		strictPort: true,
+		// 		hmr: {
+		// 			clientPort: 443
+		// 		}
+		// 	},
+		// 	define: {
+		// 		// env-cmd https://blog.hdks.org/Environment-Variables-in-SvelteKit-and-Vercel/
+		// 		'process.env': process.env
+		// 	},
+		// 	resolve: {
+		// 		alias: {
+		// 			$root: path.resolve('./src')
+		// 		}
+		// 	}
+		// }
 	}
 };
 
